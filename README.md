@@ -91,7 +91,7 @@ We suggest you consider returning variation of `std::optional` for these getters
 
 ### Comparison Operators
 
-Objects of type `Variant` must be comparable. Implement all of the basic comparison operators (==, !=, <, <=, >, >=). Remember: programmers are lazy, and prefer to write as little code as possible. Can you think of a way to write the least amount of code for your comparison operators?
+Objects of type `Variant` must be comparable. Implement all the basic comparison operators (`==`, `!=`, `<`, `<=`, `>`, `>=`). Remember: programmers are lazy, and prefer to write as little code as possible. Can you think of a way to write the least amount of code for your comparison operators?
 
 ### Streamable
 
