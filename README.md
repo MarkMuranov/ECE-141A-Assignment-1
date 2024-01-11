@@ -71,6 +71,16 @@ Consider calling these assignment operators to initialize your `Variant` in your
 
 ### Getters
 
+---
+> Suggestions:
+
+- Perhaps it's worth being more explicit with how the getters should work. For instance, it isn't immediately obvious that calling `getInt()` on a `float` Variant should return something like `(int)std::round(floatValue)`.
+- In my opinion, we should either
+  1. Be more explicit with how each type converts into the other.
+  2. Remove the ability for types to be implicitly converted into each other (for instance, calling `getInt()` on a `float` Variant should return a `nullopt`).
+
+---
+
 Given a `Variant` variable, a caller may request a value from the `Variant` in any of the four given types:
 
 ```cpp
@@ -88,6 +98,12 @@ auto theInt = theStringVariant.asInt(); // Can't convert "hello" to an int, so w
 ```
 
 We suggest you consider returning variation of `std::optional` for these getters.
+
+---
+> Suggestions:
+
+- Even though we only *suggest* to use `std::optional`, I did notice the testing code assumed the return types were of type `std::optional`. Should we be more explicit about this?
+---
 
 ### Comparison Operators
 
