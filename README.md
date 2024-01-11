@@ -126,7 +126,7 @@ Turn in your submission by pushing your work to GitHub. Each time you do so, you
 Also make sure that all of your code (`.h` and `.cpp` files) are in the `Source/` directory. Vlad will only compile code in this directory!
 
 #### Grading
-```
+```python
 Compiles test: 20pts
 Compare test:  25pts
 Values test:   30pts
