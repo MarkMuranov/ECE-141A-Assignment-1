@@ -97,14 +97,14 @@ Objects of type `Variant` must be comparable. Implement all the basic comparison
 
 The last feature to implement is to make your variable "output streamable".  Consider:
 
-```
+```cpp
 Variant theVariant("hello world");
 std::cout << theVariant;
 ```
 
 Implement this feature using the standard `friend` method:
 
-```
+```cpp
 friend std::ostream& operator<<(std::ostream& aStream, const Variant& aVar);
 ```
 
