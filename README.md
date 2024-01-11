@@ -142,11 +142,12 @@ Turn in your submission by pushing your work to GitHub. Each time you do so, you
 Also make sure that all of your code (`.h` and `.cpp` files) are in the `Source/` directory. Vlad will only compile code in this directory!
 
 #### Grading
-```
-Compiles test: 20pts
-Compare test:  25pts
-Values test:   30pts
-Manual code review: 25pts
-```
+
+| Section            | Points |
+|--------------------|--------|
+| Compile test       | 20     |
+| Compare test       | 25     |
+| Values test        | 30     |
+| Manual code review | 25     |
 
 > In your project folder is a file called, "students.json". For each assignment, fill out the fields in that file, including your name, PID, and level of effort for the assignment. 
