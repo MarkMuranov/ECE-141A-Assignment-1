@@ -1,4 +1,6 @@
-# WI23-Assignment1
+# WI24-Assignment1
+## TODO: Update this README
+
 Design, test, and build our own variant class
 #### Due Jan 24, 11:30pm (PST)
 
