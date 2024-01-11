@@ -121,7 +121,9 @@ As we discussed in lecture, it may also be easier to create a subclass of `Varia
 ## Submitting your work
 #### Due Jan. 24, at 11:30pm
 
-Turn in your submission by pushing your work to github. Each time you do so, your code will be auto-tested by, "Vlad-the-compiler". The results are visible on your github page for the assignment. Vlad didn't get invited to any new-year's eve parties -- and is a bad mood. Make sure you turn your work in on time!
+Turn in your submission by pushing your work to GitHub. Each time you do so, your code will be auto-tested by, "Vlad-the-compiler". The results are visible on your GitHub page for the assignment. Vlad didn't get invited to any new-year's eve parties -- and is a bad mood. Make sure you turn your work in on time!
+
+Also make sure that all of your code (`.h` and `.cpp` files) are in the `Source/` directory. Vlad will only compile code in this directory!
 
 #### Grading
 ```
