@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 FILE(GLOB MySources Source/**)
 
 # Maintain folder structure (useful for Visual Studio)
-if(MSVC)
+if (MSVC)
 	source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${MySources})
 endif()
 
