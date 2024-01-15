@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <optional>
+#include <string>
 
 namespace ECE141
 {

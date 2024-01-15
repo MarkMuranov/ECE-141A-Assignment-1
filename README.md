@@ -35,7 +35,7 @@ In this assignment, you're going to build your own (simplified) version of a `Va
 
 Your `Variant` class must be able to hold any of the following types: `int`, `float`, `const char*` (or `std::string`). You won't be asked to store user defined types (classes). 
 
-Consider using an `enum class` to indicate what type your `Variant` is currently holding:
+Consider using an `enum class` to indicate which type your `Variant` is currently holding:
 
 ```cpp
 enum class VariantType { intType, floatType, stringType };
