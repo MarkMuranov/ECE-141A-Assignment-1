@@ -2,7 +2,7 @@
   "course": "ECE141a",
   "term"  : "WI24",
   "assignment"         : 1,
-  "due_date"         : "Jan. 28, 11:30p",
+  "due_date"           : "Jan. 28, 11:30p",
   "total_effort_hours" : 0,
   "students": [
     {
