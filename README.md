@@ -37,7 +37,7 @@ Your `Variant` class must be able to hold any of the following types: `int`, `fl
 
 Consider using an `enum class` to indicate what type your `Variant` is currently holding:
 
-```
+```cpp
 enum class VariantType { intType, floatType, stringType };
 ```
 
@@ -71,54 +71,72 @@ Consider calling these assignment operators to initialize your `Variant` in your
 
 ### Getters
 
----
-> Suggestions:
-
-- Perhaps it's worth being more explicit with how the getters should work. For instance, it isn't immediately obvious that calling `getInt()` on a `float` Variant should return something like `(int)std::round(floatValue)`.
-- In my opinion, we should either
-  1. Be more explicit with how each type converts into the other.
-  2. Remove the ability for types to be implicitly converted into each other (for instance, calling `getInt()` on a `float` Variant should return a `nullopt`).
-
----
-
 Given a `Variant` variable, a caller may request a value from the `Variant` in any of the four given types:
 
 ```cpp
-sometype asInt() const;      // Retrieve value as int, but don't change internal type
-sometype asFloat() const;    // Retrieve value as float, but don't change internal type
-sometype asString() const;   // Retrieve value as string, but don't change internal type
+std::optional<int> asInt() const;            // Retrieve value as int
+std::optional<float> asFloat() const;        // Retrieve value as float
+std::optional<std::string> asString() const; // Retrieve value as string
 VariantType getType() const; // Get current type of variant
 ```
 
-In the interface above, we've left the specific type to be returned from each method up to you (`sometype` is just a placeholder). Before making the obvious choice, consider how you're going deal with error handling. For example, consider the following scenario:
+Notice two things in the getters above: 
+1. The return type of `std::optional<...>`
+2. The `const` keyword at the end of the declarations.
+
+The `std::optional` is there to allow for error handling. Unlike the built-in `std::variant`, we want you to implement implicit type conversions. This means that, when possible, your `Variant` class should attempt to automatically convert between types. Here are some examples:
 
 ```cpp
-ECE141::Variant theStringVariant("hello");
-auto theInt = theStringVariant.asInt(); // Can't convert "hello" to an int, so what do we do?
+Variant intVariant(42);
+intVariant.asInt();    // Should return 42 (an int)
+intVariant.asFloat();  // Should return 42.0f (a float)
+intVariant.asString(); // Should return "42" (a string)
+intVariant.getType();  // Should return VariantType::intType
+
+Variant floatVariant(3.14f);
+floatVariant.asInt();    // Should return 3 (rounded to the nearest int)
+floatVariant.asFloat();  // Should return 3.14f (a float)
+floatVariant.asString(); // Should return "3.14" (a string)
+floatVariant.getType();  // Should return VariantType::floatType
+
+Variant stringVariant1("hello");
+stringVariant1.asInt();    // Should return std::nullopt (can't convert)
+stringVariant1.asFloat();  // Should return std::nullopt (can't convert)
+stringVariant1.asString(); // Should return "hello" (a string)
+stringVariant1.getType();  // Should return VariantType::stringType
+
+Variant stringVariant2("123");
+stringVariant2.asInt();    // Should return 123 (an int)
+stringVariant2.asFloat();  // Should return 123.0f (a float)
+stringVariant2.asString(); // Should return "123" (a string)
+stringVariant2.getType();  // Should return VariantType::stringType
 ```
 
-We suggest you consider returning variation of `std::optional` for these getters.
-
----
-> Suggestions:
-
-- Even though we only *suggest* to use `std::optional`, I did notice the testing code assumed the return types were of type `std::optional`. Should we be more explicit about this?
----
+The `const` keyword mentioned earlier specifies that the internals of the `Variant` object should **not** change when a getter is called. Meaning the value nor the type should change when calling a getter.
 
 ### Comparison Operators
 
 Objects of type `Variant` must be comparable. Implement all the basic comparison operators (`==`, `!=`, `<`, `<=`, `>`, `>=`). Remember: programmers are lazy, and prefer to write as little code as possible. Can you think of a way to write the least amount of code for your comparison operators?
 
+Once again, just like for the getters, we want you to implement implicit conversions between types. If your getters are implemented correctly, this should be simple. Here is an example:
+
+```cpp
+Variant intVariant(20);
+Variant floatVariant(40.0f);
+
+intVariant < floatVariant; // Should return 'true', as 20 < 40
+```
+
 ### Streamable
 
-The last feature to implement is to make your variable "output streamable".  Consider:
+The last feature to implement is to make your variable "output streamable". Consider:
 
 ```cpp
 Variant theVariant("hello world");
 std::cout << theVariant;
 ```
 
-Implement this feature using the standard `friend` method:
+Implement this feature using the standard `friend` method (already present in the starter code):
 
 ```cpp
 friend std::ostream& operator<<(std::ostream& aStream, const Variant& aVar);
@@ -130,7 +148,7 @@ Our auto-grader provides some basic validation of your code. But that's not a fu
 
 Your final task is to make your `Variant` class testable. In lecture, we provide a video that detailed how to use a simple testing framework called `Testable`. That class has been included in your assignment repository.  You're welcome to use that -- or the _much more powerful_ `gtest` class provided by Google.  Regardless of which you choose, in this step, you'll write tests to confirm that your `Variant` class is working as designed. The thoroughness and quality of the tests you write will be evaluated as part of your score for this assignment.
 
-You should create a test for every method in the `Variant` interface. Sometimes it's convenient to write a single test method to test multiple things, but generally we write one test per method. (See our video about designing a testing system for how to integrate our `Testable` class into your solution. It's pretty easy to do.
+You should create a test for every method in the `Variant` interface. Sometimes it's convenient to write a single test method to test multiple things, but generally we write one test per method. See our video about designing a testing system for how to integrate our `Testable` class into your solution. It's pretty easy to do.
 
 As we discussed in lecture, it may also be easier to create a subclass of `Variant` (e.g. `TestVariant`) and put all your testing code and logic here. That keeps your original `Variant` class from test-related changes.
 
