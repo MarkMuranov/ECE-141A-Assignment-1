@@ -44,7 +44,7 @@ bool doValueTests() {
         return false;
 
     // Test assignment operators
-    theOut.clear();
+    theOut.str(std::string());
     ECE141::Variant theVar(theV1); // Invoke the copy-constructor
     theVar = 200;
     theOut << theVar << " ";
@@ -65,7 +65,7 @@ bool doValueTests() {
 
     // Test asFloat() and asString()
     auto theFloatVal = theVar.asFloat();
-    theOut.clear();
+    theOut.str(std::string());
     theOut << std::fixed << theFloatVal.value();
     theString1 = theOut.str();
     if (theVar.asString() != theString1)
