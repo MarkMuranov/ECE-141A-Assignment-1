@@ -15,9 +15,9 @@ namespace ECE141
 
         // ---TODO: Add variant methods---
 
-        friend std::ostream& operator<<(std::ostream& aStream, const Variant& aVar);
+        friend std::ostream& operator<<(std::ostream& aStream, const Variant& aVariant);
 
-    private:
+    protected:
         // ---TODO: Add member variables---
 
     };

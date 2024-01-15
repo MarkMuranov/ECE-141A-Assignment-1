@@ -2,8 +2,7 @@
 #include "Testable.h"
 #include "Variant.h"
 
-bool doCompareTests()
-{
+bool doCompareTests() {
     ECE141::Variant theV0(100);
     ECE141::Variant theV1(theV0);
 
@@ -25,8 +24,7 @@ bool doCompareTests()
     return true;
 }
 
-bool doValueTests()
-{
+bool doValueTests() {
     // Test constructors
     ECE141::Variant theV1(100);
     ECE141::Variant theV2(6.28f);
@@ -77,16 +75,13 @@ bool doValueTests()
 }
 
 // Returns appropriate exit code ('0' for a passing test, '1' for a failing test).
-int printTestMessage(const std::string& argument, const bool hasPassed)
-{
+int printTestMessage(const std::string& argument, const bool hasPassed) {
     std::cout << argument << " test " << (hasPassed ? "PASS" : "FAIL") << "\n";
     return static_cast<int>(!hasPassed);
 }
 
-int main(int argc, const char* argv[])
-{
-    if (argc > 1)
-    {
+int main(int argc, const char* argv[]) {
+    if (argc > 1) {
         const std::string argument(argv[1]);
 
         if (argument == "compile")

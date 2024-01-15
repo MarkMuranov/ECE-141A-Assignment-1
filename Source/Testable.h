@@ -11,7 +11,7 @@ namespace ECE141
     {
     protected:
         // Make sure this variable gets incremented each time a test is added.
-        size_t numberOfTests = 0;
+        size_t theNumberOfTests = 0;
 
     public:
         Testable() = default;
@@ -24,30 +24,26 @@ namespace ECE141
         virtual bool operator()(const std::string &aName) = 0;
 
         // Run all tests, returns number of tests passed.
-        size_t runAllTests()
-        {
-            size_t numberOfTestsPassed = 0;
+        size_t runAllTests() {
+            size_t theNumberOfTestsPassed = 0;
             std::stringstream theOutput;
-            for(size_t i = 0; i < numberOfTests; i++)
-            {
-                if (auto theName = getTestName(i))
-                {
+            for(size_t i = 0; i < theNumberOfTests; i++) {
+                if (auto theName = getTestName(i)) {
                     const bool hasPassed = (*this)(theName.value());
-                    if (hasPassed)
-                        numberOfTestsPassed++;
+                    theNumberOfTestsPassed += (int)hasPassed;
 
                     theOutput << i + 1 << ". " << theName.value() << ": "
                               << (hasPassed ? "PASS" : "FAIL") << "\n";
                 }
             }
 
-            if (numberOfTestsPassed == numberOfTests)
+            if (theNumberOfTestsPassed == theNumberOfTests)
                 std::cout << "All";
             else
-                std::cout << numberOfTestsPassed << " of " << numberOfTests;
+                std::cout << theNumberOfTestsPassed << " of " << theNumberOfTests;
 
             std::cout << " tests passed.\n" << theOutput.str() << "\n";
-            return numberOfTestsPassed;
+            return theNumberOfTestsPassed;
         }
 
     };
