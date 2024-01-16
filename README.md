@@ -1,7 +1,7 @@
 # WI24 - Assignment 1
 
 Design, test, and build our own variant class!
-#### Due Jan 24, 11:30pm (PST)
+#### Due Jan 22, 11:30pm (PST)
 
 ## Introduction
 
@@ -152,7 +152,7 @@ You should create a test for every method in the `Variant` interface. Sometimes 
 As we discussed in lecture, it may also be easier to create a subclass of `Variant` (e.g. `TestVariant`) and put all your testing code and logic here. That keeps your original `Variant` class from test-related changes.
 
 ## Submitting your work
-#### Due Jan. 24, at 11:30pm
+#### Due Jan. 22, at 11:30pm
 
 Turn in your submission by pushing your work to GitHub. Each time you do so, your code will be auto-tested by, "Vlad-the-compiler". The results are visible on your GitHub page for the assignment. Vlad didn't get invited to any new-year's eve parties -- and is a bad mood. Make sure you turn your work in on time!
 
